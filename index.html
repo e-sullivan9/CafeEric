@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Cafe Eric Mobile</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="themes/Cafe.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="cordova.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery.mobile.min.js"></script>
+        <meta name="viewport" content="width=device-width">
+        <script>
+    var imgURL =["img/Cafe.jpg","img/cin.jpg","img/DanishPastry.jpg","img/place.jpg","img/pastry.jpg","img/cafe-cappuccino.jpg"];
+    i=0;
+    j=0;
+    $(document).on("pagecreate","#gallery",function(){
+     $("#ImageDiv").swiperight(function () {
+        if (i < (imgURL.length - 1)) {
+            i++;
+        } else {
+            i = 0;
+        }
+        var imgStr = "<img src=" + imgURL[i] + " style='width:100%;margin-top:auto'>";
+        $("#ImageDiv").html(imgStr);
+        document.getElementById("total").innerHTML = i+1+"/"+imgURL.length;
+        
+        });
+    });
+    $(document).on("pagecreate","#gallery",function(){
+     $("#ImageDiv").swipeleft(function () {
+                if (i > 0) {
+                    i--;
+                } else {
+                        i = (imgURL.length - 1);
+                    }
+                    var imgStr = "<img src=" + imgURL[i] + " style='width:100%;margin-top:auto'>";
+                    $("#ImageDiv").html(imgStr);
+                    document.getElementById("total").innerHTML = i+1+"/"+imgURL.length;
+                });
+            });
+        </script>
+        <style type="text/css">
+            
+            h1 {
+                font-style: italic;
+            }
+            #logoTitle {
+                font-style: italic;
+                font-weight: bold;
+                font-size: 100px;
+                text-align: center;
+                margin: auto;
+            }
+            #ImageDiv {
+                position: relative;
+                height: 80vh;
+                width: 100vw;
+            }
+            #info {
+                float: left;
+                position: relative;
+                margin-left: 1em;
+            }
+            #mapCanvas {
+                height: 100%;
+                width: 100%;
+            }
+            #giftCard {
+                margin-right: 1em;
+                float: right;
+                position: relative;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-role="page" id="frontPage" data-theme="a">
+
+            <div data-role="header">
+                <h1>Cafe Eric</h1>
+            </div>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#frontPage" class="ui-btn ui-btn-b" data-transition="fade">Home</a></li>
+                        <li><a href="#menu" class="ui-btn ui-btn-b" data-transition="fade">Menu</a></li>
+                        <li><a href="#gallery" class="ui-btn ui-btn-b" data-transition="fade">Photo Gallery</a></li>
+                    </ul>
+                </div>
+            <div data-role="content">
+                <h1 id="logoTitle">Cafe Eric</h1>
+                <img src="img/cafe-cappuccino.jpg" alt="Main" style="width:100%;height:auto" name="SlideShow" >
+            </div>
+            <div id="info">
+                <p>
+                    Hours:<br>
+                    Mon - Sat: 9:00 AM - 10:00 PM<br>
+                    Sun: 9:00 AM - 9:00PM<br>
+                    Location: <a href="#map" class="ui-btn ui-btn-b" data-transition="fade">841 Worcestor St, Natick</a>
+                </p>
+            </div>
+            <div id="giftCard">
+                <a href="#giftForm" class="ui-btn ui-btn-b" data-transition="fade">
+                    <img src="img/Gift_Card.jpg" alt="giftcard">
+                </a>
+            </div>
+            <div data-role="footer" data-position="fixed" data-theme="b">
+                <h4>Eric Sullivan</h4>
+            </div>
+        </div>
+        
+        
+        <div data-role="page" id="gallery" data-theme="a">
+            <div data-role="header">
+                <h1>Gallery</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#frontPage" class="ui-btn ui-btn-b" data-transition="fade">Home</a></li>
+                        <li><a href="#menu" class="ui-btn ui-btn-b" data-transition="fade">Menu</a></li>
+                        <li><a href="#gallery" class="ui-btn ui-btn-b" data-transition="fade">Photo Gallery</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="content">
+                <div id="ImageDiv">
+                    <span class="helper"></span>
+                    <img src="img/Cafe.jpg" style="width:100%; vertical-align: middle; position: relative;">
+                </div>
+                <div id="total" style="text-align: center;">
+                    <p><script type="text/javascript"> document.write(i+1+"/"+imgURL.length);</script></p>
+                </div>
+            </div>
+            <div data-role="footer" data-position="fixed" data-theme="b">
+                <h4>Eric Sullivan</h4>
+            </div>
+            
+        </div>
+        
+        <div data-role="page" id="map" data-theme="a">
+            <div data-role="header">
+                <h1>Map</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#frontPage" class="ui-btn ui-btn-b" data-transition="fade">Home</a></li>
+                        <li><a href="#menu" class="ui-btn ui-btn-b" data-transition="fade">Menu</a></li>
+                        <li><a href="#gallery" class="ui-btn ui-btn-b" data-transition="fade">Photo Gallery</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="content">
+                <div id="mapCanvas"></div>
+                    <script>
+                   $('#mapCanvas').html(function(){
+                        var mapWidth = $(window).width();
+                        var mapHeight = $(window).height();
+                        var imgStr = "http://maps.googleapis.com/maps/api/staticmap?center=42.3011582,-71.3610118&zoom=15&size="+mapWidth+"x"+mapHeight+"&markers=color:red%7Clabel:A%7C42.3011582,-71.3610118&mapstype=roadmap18&sensor=false";
+                        return '<img src="'+imgStr+'" alt="location map">';
+                    });
+                    </script> 
+            </div>
+            <div data-role="footer" data-position="fixed" data-theme="b">
+                <h4>Eric Sullivan</h4>
+            </div>
+        </div>
+        
+        <div data-role="page" id="giftForm" data-theme="a">
+            <div data-role="header">
+                <h1>Gift Card</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#frontPage" class="ui-btn ui-btn-b" data-transition="fade">Home</a></li>
+                        <li><a href="#menu" class="ui-btn ui-btn-b" data-transition="fade">Menu</a></li>
+                        <li><a href="#gallery" class="ui-btn ui-btn-b" data-transition="fade">Photo Gallery</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="content">
+                <form method="get" action="">
+                    <label for="name">Card Number: </label>
+                    <input type="text" name="Card Number" id="name">
+                    <fieldset data-role="controlgroup">
+                        <legend>Option</legend>
+                        <input type="radio" name="option" id="new"  value="n">
+                        <label for="new">Open new card</label>
+                        <input type="radio" name="option" id="add"  value="a">
+                        <label for="add">Add to card</label>
+                    </fieldset>
+                    <label for="name">Amount to add: </label>
+                    <input type="text" name="added" id="added">
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+            <div data-role="footer" data-position="fixed" data-theme="b">
+                <h4>Eric Sullivan</h4>
+            </div>
+        </div>
+        
+        <div data-role="page" id="menu" data-theme="a">
+            <div data-role="header">
+                <h1>Menu</h1>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#frontPage" class="ui-btn ui-btn-b" data-transition="fade">Home</a></li>
+                        <li><a href="#menu" class="ui-btn ui-btn-b" data-transition="fade">Menu</a></li>
+                        <li><a href="#gallery" class="ui-btn ui-btn-b" data-transition="fade">Photo Gallery</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div data-role="content">
+                <form>
+                    <input id="filterTable-input" data-type="search" />
+                </form>
+                <table data-role="table" data-mode="columntoggle" id="movie-table" data-filter="true" data-input="#filterTable-input" class="ui-responsive table-stroke" data-column-btn-theme="b" data-column-btn-text="Columns" data-column-popup-theme="a">
+                    <thead>
+                        <tr class="ui-bar-d">
+                            <th data-priority="1">Type</th>
+                            <th data-priority="1">Name of Product</th>
+                            <th data-priority="1">Price</th>
+                        </tr>
+                    </thead>
+                <tbody>
+                    <tr>
+                        <th>Sandwich</th>
+                        <td>Asiago Meatball</td>
+                        <td>6.99</td>
+                    </tr>
+                    <tr>
+                        <th>Sandwich</th>
+                        <td>Wholegrain Turkey</td>
+                        <td>5.49</td>
+                    </tr>
+                    <tr>
+                        <th>Sandwich</th>
+                        <td>Artisan Ham</td>
+                        <td>7.99</td>
+                    </tr>
+                    <tr>
+                        <th>Sandwich</th>
+                        <td>Roast Beef</td>
+                        <td>6.29</td>
+                    </tr>
+                    <tr>
+                        <th>Soup</th>
+                        <td>French Onion</td>
+                        <td>4.99</td>
+                    </tr>
+                    <tr>
+                        <th>Soup</th>
+                        <td>Chicken Noodle</td>
+                        <td>4.99</td>
+                    </tr>
+                    <tr>
+                        <th>Soup</th>
+                        <td>Chedder Soup</td>
+                        <td>4.99</td>
+                    </tr>
+                    <tr>
+                        <th>Salad</th>
+                        <td>Chicken Caesar</td>
+                        <td>6.99</td>
+                    </tr>
+                    <tr>
+                        <th>Salad</th>
+                        <td>Greek</td>
+                        <td>6.49</td>
+                    </tr>
+                    <tr>
+                        <th>Coffee</th>
+                        <td>Coffee</td>
+                        <td>1.89</td>
+                    </tr>
+                    <tr>
+                        <th>Coffee</th>
+                        <td>Cappuccino</td>
+                        <td>2.99</td>
+                    </tr>
+                    <tr>
+                        <th>Coffee</th>
+                        <td>Mocha Latte</td>
+                        <td>2.99</td>
+                    </tr>
+                    <tr>
+                        <th>Coffee</th>
+                        <td>Caramel Latte</td>
+                        <td>2.99</td>
+                    </tr>
+                    <tr>
+                        <th>Pastry</th>
+                        <td>Cheese Pastry</td>
+                        <td>2.19</td>
+                    </tr>
+                    <tr>
+                        <th>Pastry</th>
+                        <td>Cherry Pastry</td>
+                        <td>2.19</td>
+                    </tr>
+                    <tr>
+                        <th>Pastry</th>
+                        <td>Chocolate Chip</td>
+                        <td>1.99</td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            <div data-role="footer" data-position="fixed" data-theme="b">
+                <h4>Eric Sullivan</h4>
+            </div>
+        </div>
+        
+    </body>
+</html>
